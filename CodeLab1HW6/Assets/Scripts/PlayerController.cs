@@ -1,6 +1,9 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.Numerics;
 using UnityEngine;
+using Quaternion = UnityEngine.Quaternion;
+using Vector3 = UnityEngine.Vector3;
 
 public class PlayerController : MonoBehaviour
 {
@@ -13,12 +16,6 @@ public class PlayerController : MonoBehaviour
     public KeyCode leftKey;
     public KeyCode rightKey;
     public KeyCode jumpKey;
-    
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
 
     // Update is called once per frame
     void Update()
@@ -29,12 +26,17 @@ public class PlayerController : MonoBehaviour
 
     private void RotateCamera()
     {
+        //get mouse pos on x axis
         _horizontalMouse = Input.GetAxis("Mouse X");
+        //get mouse pos on y axis
         _verticalMouse = Input.GetAxis("Mouse Y");
         
+        //rotate camera according to mouse pos
         transform.Rotate(-_verticalMouse, _horizontalMouse, 0f);
-        
+
+        //lock z rotation
         transform.eulerAngles = new Vector3(transform.eulerAngles.x, transform.eulerAngles.y, 0f);
+        
     }
 
     private void TranslateCamera()

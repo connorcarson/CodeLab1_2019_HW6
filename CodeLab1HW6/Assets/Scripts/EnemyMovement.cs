@@ -12,6 +12,7 @@ public class EnemyMovement : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        //initialize player collider
         _player = Camera.main.GetComponent<Collider>();
     }
 
@@ -30,15 +31,19 @@ public class EnemyMovement : MonoBehaviour
         Ray enemyRay = new Ray(transform.position, transform.forward);
         //Debug.DrawRay(enemyRay.origin, enemyRay.direction * maxRayDistance, Color.green);
 
+        //if enemyRay hits something
         if (Physics.Raycast(enemyRay, maxRayDistance))
         {
             int turnProbability = Random.Range(0, 100);
+            
             if (turnProbability <= 50)
             {
+                //turn right half the time
                 transform.Rotate(0f, 90f, 0f);
             }
             else
             {
+                //turn left half the time
                 transform.Rotate(0f, -90f, 0f);
             }
         }
