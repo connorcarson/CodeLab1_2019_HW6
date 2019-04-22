@@ -6,11 +6,13 @@ public class EnemyMovement : MonoBehaviour
 {
     public float speedMultiplier;
     public float maxRayDistance;
+
+    private Collider _player;
     
     // Start is called before the first frame update
     void Start()
     {
-        
+        _player = Camera.main.GetComponent<Collider>();
     }
 
     // Update is called once per frame
@@ -39,6 +41,14 @@ public class EnemyMovement : MonoBehaviour
             {
                 transform.Rotate(0f, -90f, 0f);
             }
+        }
+    }
+
+    private void OnCollisionEnter(Collision other)
+    {
+        if (other.collider == _player)
+        {
+            print("You got hurt!");
         }
     }
 }
