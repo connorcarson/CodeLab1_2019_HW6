@@ -53,7 +53,8 @@ public class EnemyMovement : MonoBehaviour
     {
         if (other.collider == _player)
         {
-            print("You got hurt!");
+            //Debug.Log("You got hurt!");
+            GameManager.instance.GameOver();
         }
     }
 }
